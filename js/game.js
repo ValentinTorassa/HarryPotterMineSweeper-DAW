@@ -103,4 +103,141 @@ class Buscaminas {
         return count;
     }
 
+    // Verifica si una posición está dentro de los límites del tablero
+ isValidPosition(col, row) {
+    return col >= 0 && col < this.columns && row >= 0 && row < this.rows;
+    }
+
+    // Maneja el clic izquierdo en una celda
+    handleClick(col, row) {
+        if (!this.isPlaying || this.board[col][row].state === "flagged") {
+            return;
+        }
+
+        // Marcar que el juego ha comenzado
+        if (!this.gameStarted) {
+            this.gameStarted = true;
+        }
+
+        // Si es una mina, perder
+        if (this.board[col][row].value === -1) {
+            this.loseGame();
+            return;
+        }
+
+        // Revelar la celda
+        this.revealCell(col, row);
+        
+        // Verificar si ganó
+        if (this.checkWin()) {
+            this.winGame();
+        }
+    }
+
+    // Maneja el clic derecho para colocar/quitar bandera
+    toggleFlag(col, row) {
+        if (!this.isPlaying || this.board[col][row].state === "revealed") {
+            return;
+        }
+
+        if (this.board[col][row].state === "flagged") {
+            // Quitar bandera
+            this.board[col][row].state = "hidden";
+            this.flags--;
+        } else {
+            // Colocar bandera
+            this.board[col][row].state = "flagged";
+            this.flags++;
+        }
+
+        this.updateInterface();
+    }
+
+    // Revela una celda y sus adyacentes si es necesario
+    revealCell(col, row) {
+        // Si ya está revelada o tiene bandera, no hacer nada
+        if (this.board[col][row].state === "revealed" || 
+            this.board[col][row].state === "flagged") {
+            return;
+        }
+
+        // Revelar la celda actual
+        this.board[col][row].state = "revealed";
+        this.board[col][row].revealed = true;
+
+        // Si la celda no tiene minas adyacentes, revelar celdas vecinas
+        if (this.board[col][row].value === 0) {
+            this.revealAdjacentCells(col, row);
+        }
+
+        this.updateInterface();
+    }
+
+    // Revela todas las celdas adyacentes a una celda vacía
+    revealAdjacentCells(col, row) {
+        for (let dCol = -1; dCol <= 1; dCol++) {
+            for (let dRow = -1; dRow <= 1; dRow++) {
+                const newCol = col + dCol;
+                const newRow = row + dRow;
+                
+                if (this.isValidPosition(newCol, newRow)) {
+                    this.revealCell(newCol, newRow);
+                }
+            }
+        }
+}
+
+    // Verifica si el jugador ha ganado
+    checkWin() {
+        for (let col = 0; col < this.columns; col++) {
+            for (let row = 0; row < this.rows; row++) {
+                // Si hay una celda no revelada que no es mina, aún no ganó
+                if (this.board[col][row].state !== "revealed" && 
+                    this.board[col][row].value !== -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    // Maneja la victoria del jugador
+    winGame() {
+        this.isPlaying = false;
+        this.stopTimer();
+        
+        // Mostrar todas las minas con banderas
+        this.showAllMines();
+        
+        // Guardar puntuación
+        this.saveScore();
+        
+        // Notificar victoria
+        this.showMessage("¡Felicidades! ¡Has ganado!");
+    }
+
+    // Maneja la derrota del jugador
+    loseGame() {
+        this.isPlaying = false;
+        this.stopTimer();
+        
+        // Mostrar todas las minas
+        this.showAllMines();
+        
+        // Notificar derrota
+        this.showMessage("¡Game Over! Has perdido.");
+    }
+
+    // Muestra todas las minas en el tablero
+    showAllMines() {
+        for (let col = 0; col < this.columns; col++) {
+            for (let row = 0; row < this.rows; row++) {
+                if (this.board[col][row].value === -1) {
+                    this.board[col][row].state = "revealed";
+                }
+            }
+        }
+        this.updateInterface();
+    }
+
 }
