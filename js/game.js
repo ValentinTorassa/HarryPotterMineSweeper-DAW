@@ -240,4 +240,100 @@ class Buscaminas {
         this.updateInterface();
     }
 
+    // Inicia el temporizador del juego
+    startTimer() {
+        this.startTime = Date.now();
+        this.timer = setInterval(() => {
+            this.elapsedTime = Math.floor((Date.now() - this.startTime) / 1000);
+            this.updateTimer();
+        }, 1000);
+    }
+
+    // Detiene el temporizador
+    stopTimer() {
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = null;
+        }
+    }
+
+    // Actualiza el display del temporizador
+    updateTimer() {
+        const element = document.getElementById('timer');
+        if (element) {
+            element.textContent = this.elapsedTime;
+        }
+    }
+
+    // Guarda la puntuación en el almacenamiento local
+    saveScore() {
+        if (typeof saveGame === 'function') {
+            const score = this.calculateScore();
+            saveGame("Player", score, this.elapsedTime);
+        }
+    }
+
+    // Calcula la puntuación basada en el tiempo y dificultad
+    calculateScore() {
+        const baseScore = 1000;
+        const timePenalty = this.elapsedTime * 2;
+        const difficultyBonus = this.mines * 10;
+        
+        return Math.max(0, baseScore - timePenalty + difficultyBonus);
+    }
+
+    // Actualiza la interfaz del juego
+    updateInterface() {
+        // Placeholder
+        console.log("Interfaz actualizada");
+    }
+
+    // Muestra un mensaje al jugador
+    showMessage(message) {
+        alert(message);
+    }
+
+    // Cambia la dificultad del juego
+    setDifficulty(level) {
+        switch(level) {
+            case 'easy':
+                this.rows = 8;
+                this.columns = 8;
+                this.mines = 10;
+                break;
+            case 'medium':
+                this.rows = 12;
+                this.columns = 12;
+                this.mines = 25;
+                break;
+            case 'hard':
+                this.rows = 16;
+                this.columns = 16;
+                this.mines = 40;
+                break;
+        }
+        this.newGame();
+    }
+
+    // Obtiene el estado actual del tablero
+    getBoardState() {
+        return this.board;
+    }
+
+    // Obtiene información del juego
+    getGameInfo() {
+        return {
+            rows: this.rows,
+            columns: this.columns,
+            mines: this.mines,
+            flags: this.flags,
+            isPlaying: this.isPlaying,
+            time: this.elapsedTime
+        };
+    }
+}
+
+// Exportar la clase para uso en otros archivos
+if (typeof module !== 'undefined' && module.exports) {
+module.exports = Buscaminas;
 }
