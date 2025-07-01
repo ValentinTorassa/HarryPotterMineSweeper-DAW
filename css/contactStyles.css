@@ -1,0 +1,149 @@
+html {
+    min-height: 100vh;
+    background: url('../img/HarryPotterWallpaper.jpg') center center / cover no-repeat;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #222;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: rgba(0,0,0,0.32);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 32px 32px 16px 32px;
+}
+
+.headerTitle {
+    flex: 1;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.githubIcon {
+    font-size: 2.5rem;
+    color: #fff;
+    transition: color 0.2s;
+    vertical-align: middle;
+}
+
+.githubLink:hover .githubIcon {
+    color: #ffd700;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 48px;
+}
+
+.formContact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 350px;
+    background: #fff;
+    padding: 32px 24px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.formContact label {
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.formContact input,
+.formContact textarea {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    font-size: 1rem;
+}
+
+.formContact textarea {
+    resize: vertical;
+    min-height: 70px;
+    max-height: 200px;
+}
+
+.formContact button {
+    margin-top: 8px;
+    padding: 8px;
+    border: none;
+    background: #222;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.error {
+    color: #ff3333;
+    font-size: 0.9rem;
+    min-height: 20px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0; right: 0; top: 0; bottom: 0;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    z-index: 100;
+}
+.modalContent {
+    background: #fff;
+    padding: 32px 32px 16px 32px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+}
+.modal.active {
+    display: flex;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        padding: 16px 8px 16px 8px;
+    }
+    .headerTitle {
+        font-size: 1.2rem;
+    }
+    .githubLink {
+        position: static;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        align-self: flex-end;
+    }
+    .githubIcon {
+        font-size: 1.4rem;
+    }
+    .main {
+        padding-top: 16px;
+    }
+    .formContact {
+        padding: 16px 8px;
+        max-width: 98vw;
+    }
+}

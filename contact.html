@@ -2,10 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Contact</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/contactStyles.css">
 </head>
 <body>
-    
+    <header class="header">
+        <h1 class="headerTitle">⭐Complete to join Harry Potter Minesweeper⭐</h1>
+        <a href="https://github.com/ValentinTorassa/MineSweeper-DAW"
+            target="_blank"
+            class="githubLink"
+            title="GitHub repository">
+            <i class="fab fa-github githubIcon"></i>
+        </a>
+    </header>
+    <main class="main">
+        <form id="formContact" class="formContact">
+            <label for="nameContact">Name:</label>
+            <input type="text" id="nameContact" name="nameContact">
+            <span id="errorNameContact" class="error"></span>
+        
+            <label for="emailContact">Email:</label>
+            <input type="email" id="emailContact" name="emailContact">
+            <span id="errorEmailContact" class="error"></span>
+        
+            <label for="messageContact">Message:</label>
+            <textarea id="messageContact" name="messageContact"></textarea>
+            <span id="errorMessageContact" class="error"></span>
+        
+            <label for="houseContact">Select your house:</label>
+            <select id="houseContact" name="houseContact">
+                <option value="">Choose...</option>
+                <option value="Gryffindor">Gryffindor</option>
+                <option value="Slytherin">Slytherin</option>
+                <option value="Ravenclaw">Ravenclaw</option>
+                <option value="Hufflepuff">Hufflepuff</option>
+            </select>
+            <span id="errorHouseContact" class="error"></span>
+        
+            <button type="submit">Send</button>
+        </form>
+        
+    </main>
+    <div id="modalContact" class="modal">
+        <div class="modalContent">
+            <p id="modalMessage"></p>
+            <button id="closeModalButton" type="button">Close</button>
+        </div>
+    </div>
+    <script src="js/contactScript.js"></script>
 </body>
 </html>
