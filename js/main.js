@@ -11,14 +11,12 @@ var level;
 var board = [];
 
 // Sounds
-var soundWin1 = new Audio("winner_sound.ogg");
-var soundWin2 = new Audio("win_sound.ogg");
-var soundLose1 = new Audio("loser_sound.ogg");
-var soundGameover = new Audio("gameover_sound.ogg");
-var soundReveal = new Audio("reveal_sound.ogg");
-var soundNewgame = new Audio("newgame_sound.ogg");
-var soundOpenarea = new Audio("openarea_sound.ogg");
-var soundFlag = new Audio("flag_sound.ogg");
+var soundWin = new Audio("assets/sounds/winSound.wav");
+var soundGameover = new Audio("assets/sounds/gameOverSound.wav");
+var soundReveal = new Audio("assets/sounds/revealSound.wav"); // sonido para revelar una celda
+var soundBomb = new Audio("assets/sounds/bombSound.wav"); // sonido para cuando ponemos bomba
+var soundFlag = new Audio("assets/sounds/flagSound.wav"); // sonido para cuando ponemos bandera
+var soundGame = new Audio("assets/sounds/harryPotterSound.mp3"); //sonido de harry potter para poner mientras jugamos
 
 function setDifficulty(level) {
   if (level === 'easy') {
@@ -41,8 +39,8 @@ function resetVariables() {
   isPlaying = true;
   gameStarted = false;
 }
+
 function newGame() {
-  sound_newgame.play();
   resetVariables();
 
   generateBoardHTML(); //Gernera la estructura visual de la matriz
@@ -53,28 +51,22 @@ function newGame() {
   refreshBoard(); //Se encarga del comportamiento lógico para mostrar los elementos
 }
 
+document.addEventListener("click", () => {
+  soundGame.loop = true; // Opcional: que siga sonando
+  soundGame.play();
+}, { once: true }); // Solo se ejecuta una vez
 
+// Función para pausar y reiniciar la música de fondo
+function stopBackgroundMusic() {
+  soundGame.pause();
+  soundGame.currentTime = 0;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Función para reanudar la música de fondo desde donde estaba
+function resumeBackgroundMusic() {
+  soundGame.loop = true;
+  soundGame.play();
+}
 
 function checkWin() {
   /*
@@ -99,8 +91,8 @@ function checkWin() {
   var boardHTML = document.getElementById("board");
   boardHTML.style.background = "green";
   isPlaying = false;
-  sound_win1.play();
-  sound_win2.play();
+  soundWin.play();
+  soundWin.play();
   // localStorage can be called here
 }
 
@@ -113,8 +105,7 @@ function checkLose() {
           var boardHTML = document.getElementById("board");
           boardHTML.style.background = "red";
           isPlaying = false;
-          sound_lose1.play();
-          sound_gameover.play();
+          soundGameOver.play();
         }
       }
     }
