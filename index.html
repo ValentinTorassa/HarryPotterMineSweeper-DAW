@@ -1,11 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <title>Buscaminas Harry Potter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscaminas</title>
+    <link rel="stylesheet" href="css/indexStyles.css">
 </head>
 <body>
-    
+    <header class="header">
+        <h1>Buscaminas Harry Potter</h1>
+        <div class="header-actions">
+            <a href="contact.html" class="btn-link">Contacto</a>
+            <a href="https://github.com/ValentinTorassa/MineSweeper-DAW" class="btn-link" target="_blank">GitHub</a>
+            <div class="mode-toggle">
+                <button id="toggleModeBtn" aria-label="Cambiar modo" title="Cambiar modo claro/oscuro">🌙</button>
+                <button id="musicToggleBtn" aria-label="Música" title="Prender/Apagar música">🔊</button>
+            </div>
+                         
+        </div>
+    </header>
+    <main>
+        <div class="controls">
+            <div class="status-panel">
+                <span>Minas: <span id="mineCount">10</span></span>
+                <span id="timer">0</span>
+            </div>
+            <div class="difficulty">
+                <button id="easyBtn" type="button">Fácil</button>
+                <button id="mediumBtn" type="button">Medio</button>
+                <button id="hardBtn" type="button">Difícil</button>
+            </div>
+            <button id="resetBtn" type="button" title="Reiniciar">😊Nuevo juego</button>
+            <button id="rankingBtn" type="button" title="Ver Ranking">🏆 Ranking</button>
+        </div>
+        <div id="board" class="board"></div>
+    </main>
+
+    <!-- Modal para mostrar gifs al ganar/perder -->
+  <div id="resultGifModal" class="modal">
+    <div class="modal-content" style="background: none; box-shadow:none;">
+      <img id="resultGifImage" src="" alt="Resultado" style="max-width:320px; width:100%; border-radius:12px;"/>
+      <p id="resultGifText" style="font-size:1.3em; color:#fff; text-shadow:0 0 7px #000;"></p>
+      <button id="closeGifModalBtn" style="margin-top:1em;">Cerrar</button>
+    </div>
+  </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/storage.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mode.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,241 @@
+/* Fondo principal del sitio con imagen para modo oscuro */
+html { 
+  min-height: 100vh;
+  background: url('../img/HarryPotterWallpaper.png') center center / cover no-repeat;
+}
+
+.icon-bomb, .icon-flag {
+  width: 23px;
+  height: 23px;
+  display: block;
+  margin: 0 auto;
+  image-rendering: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Estilos generales del cuerpo de la página */
+body {
+  color: #fdf6f6; /* Texto claro */
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: bold; 
+  margin: 0;
+  padding: 0;
+}
+
+/* Modal: ventana emergente, oculta por defecto */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.65); /* Fondo semitransparente */
+  justify-content: center;
+  align-items: center;
+}
+.modal.active,
+.modal[style*="display: block"] {
+  display: flex;
+}
+
+/* Encabezado del juego */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #212121;
+  color: #ffd700;
+  padding: 1rem 2rem;
+}
+.header-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Enlaces del header */
+.btn-link {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: bold;
+  transition: text-decoration 0.2s;
+}
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Área principal del juego centrada */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 420px;
+}
+
+/* Contenedor de controles (botones y paneles) */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Panel de estado: contador y temporizador */
+.status-panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Botones de dificultad agrupados en línea */
+.difficulty {
+  display: flex;
+  gap: 0.5rem;
+}
+.difficulty button, #resetBtn, #rankingBtn {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  background: #eee;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.difficulty button:hover, #resetBtn:hover, #rankingBtn:hover {
+  background: #ffd700;
+  color: #212121;
+}
+
+/* Tablero del juego */
+.board {
+  margin-top: 1rem;
+  background: #bbb;
+  border-radius: 6px;
+  overflow: auto;
+  box-shadow: 0 2px 16px #2222;
+}
+
+/* Celda individual del tablero */
+.cell {
+  user-select: none;
+  font-size: 1.1rem;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eee;
+  border: 1px solid #999;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+.cell:active {
+  background: #ddd;
+}
+
+/* Contenido de la ventana modal */
+.modal-content {
+  background: #fff;
+  color: #212121;
+  border-radius: 10px;
+  padding: 2rem;
+  min-width: 300px;
+  max-width: 95vw;
+  box-shadow: 0 0 18px #3333;
+  text-align: center;
+}
+.modal-content button {
+  margin: 1rem 0.25rem 0 0.25rem;
+  padding: 0.4rem 1.2rem;
+  background: #ffd700;
+  color: #212121;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.modal-content h2, .modal-content h3 {
+  margin-top: 0;
+}
+
+/* Tabla de ranking de partidas */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+.ranking-table th, .ranking-table td {
+  padding: 0.25rem 0.4rem;
+  border-bottom: 1px solid #ccc;
+}
+.ranking-table tr.top-player {
+  background: #ffe066;
+  font-weight: bold;
+}
+
+/* Mensaje cuando no hay partidas */
+.no-games {
+  margin: 1rem 0;
+  color: #888;
+}
+
+/* ----- MODO CLARO (solo fondo y colores principales) ----- */
+html.light-mode {
+  background: url('../img/HarryPotterWallpaper_light.png') center center / cover no-repeat;
+}
+
+html.light-mode body {
+  color: #212121; /* Texto negro para contraste */
+  font-weight: bold;
+}
+html.light-mode .header {
+  background: #ffe066;
+  color: #212121;
+}
+html.light-mode .btn-link {
+  color: #212121;
+}
+
+/* Contador y timer en negro y negrita en modo claro */
+html.light-mode .status-panel,
+html.light-mode .status-panel span,
+html.light-mode .status-panel #mineCount,
+html.light-mode .status-panel #timer {
+  color: #212121;
+  font-weight: bold;
+}
+
+/* Botón de cambio de modo, arriba a la derecha */
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+#toggleModeBtn {
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffd700;
+  transition: color 0.2s;
+}
+html.light-mode #toggleModeBtn {
+  color: #000000;
+}
+
+/* -------- Responsive: para pantallas chicas -------- */
+@media (max-width: 600px) {
+  main {
+      max-width: 98vw;
+      margin: 1rem;
+  }
+  .modal-content {
+      min-width: 80vw;
+      padding: 1rem;
+  }
+}

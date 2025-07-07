@@ -5,14 +5,16 @@ var pendingScore = null;
 var pendingDuration = null;
 
 // Guarda los datos de una partida en el LocalStorage
-function saveGame(playerName, score, duration) {
+function saveGame(score, duration) {
+  var playerData = JSON.parse(localStorage.getItem("playerData")) || {};
   var game = {
-    playerName: playerName,
+    playerName: playerData.name || "Player", // nombre guardado
+    house: playerData.house || "",            // casa guardada
     score: score,
     duration: duration,
     date: getCurrentDate(),
     time: getCurrentTime(),
-    timestamp: Date.now() // Para ordenamiento por fecha
+    timestamp: Date.now()
   };
 
   var games = JSON.parse(localStorage.getItem("games"));

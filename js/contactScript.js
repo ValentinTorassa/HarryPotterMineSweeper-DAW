@@ -57,15 +57,17 @@ document.addEventListener("DOMContentLoaded", function () {
         var name = fields.name.input.value.trim();
         var email = fields.email.input.value.trim();
         var message = fields.message.input.value.trim();
+        var house = document.getElementById('houseContact').value; // <--- ESTA LÍNEA
+      
         var mailto = "mailto:agustinadylll@gmail.com"
           + "?subject=" + encodeURIComponent("Minesweeper Contact")
           + "&body=" + encodeURIComponent(
             "Name: " + name + "\n"
             + "Email: " + email + "\n"
+            + "House: " + house + "\n"
             + "Message:\n" + message
           );
 
-          // Después de validar todo y antes del mailto
           localStorage.setItem('playerData', JSON.stringify({ 
             name: fields.name.input.value.trim(), 
             house: document.getElementById('houseContact').value
@@ -74,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
           setTimeout(function () {
             window.location.href = mailto;
             setTimeout(function () {
-              window.location.href = 'index.html'; // o el nombre de tu archivo del buscaminas
+              window.location.href = 'index.html'; 
             }, 500); // espera medio segundo para asegurarse que mailto se lance
           }, 1200);
           
