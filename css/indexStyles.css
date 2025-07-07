@@ -228,6 +228,87 @@ html.light-mode #toggleModeBtn {
   color: #000000;
 }
 
+/* Estilos para los nuevos modales y elementos del ranking */
+.ranking-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: #ffd700;
+  color: #212121;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #ffed4e;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-danger:hover {
+  background: #c82333;
+}
+
+.input-group {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 /* -------- Responsive: para pantallas chicas -------- */
 @media (max-width: 600px) {
   main {
@@ -237,5 +318,11 @@ html.light-mode #toggleModeBtn {
   .modal-content {
       min-width: 80vw;
       padding: 1rem;
+  }
+  .ranking-controls {
+    flex-direction: column;
+  }
+  .button-group {
+    flex-direction: column;
   }
 }

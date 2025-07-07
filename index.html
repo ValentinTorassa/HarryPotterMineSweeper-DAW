@@ -45,6 +45,37 @@
     </div>
   </div>
 
+  <!-- Modal para el ranking -->
+  <div id="rankingModal" class="modal">
+    <div class="modal-content">
+      <h2>🏆 Ranking de Jugadores</h2>
+      <div class="ranking-controls">
+        <button id="sortByScoreBtn" class="btn-secondary">Ordenar por Puntaje</button>
+        <button id="sortByDateBtn" class="btn-secondary">Ordenar por Fecha</button>
+        <button id="clearRankingBtn" class="btn-danger">Limpiar Ranking</button>
+      </div>
+      <div id="rankingTable"></div>
+      <button id="closeRankingBtn" class="btn-primary">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal para ingresar nombre del jugador -->
+  <div id="playerNameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎉 ¡Felicidades! Has ganado</h2>
+      <p>Tu puntuación: <span id="finalScore">0</span></p>
+      <p>Tiempo: <span id="finalTime">0:00</span></p>
+      <div class="input-group">
+        <label for="playerNameInput">Ingresa tu nombre para guardar tu puntuación:</label>
+        <input type="text" id="playerNameInput" placeholder="Tu nombre" maxlength="20">
+      </div>
+      <div class="button-group">
+        <button id="savePlayerScoreBtn" class="btn-primary">Guardar Puntuación</button>
+        <button id="closePlayerNameBtn" class="btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
     <!-- SCRIPTS -->
     <script src="js/storage.js"></script>
     <script src="js/game.js"></script>

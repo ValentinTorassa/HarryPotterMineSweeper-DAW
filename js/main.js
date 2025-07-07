@@ -246,6 +246,11 @@ function winGame() {
   soundWin.play();
   stopTimer();
   showResultGif(true);
+  
+  // Mostrar modal para registrar puntuación después de un breve delay
+  setTimeout(() => {
+    showPlayerNameModal();
+  }, 2000);
 }
 function loseGame() {
   const boardHTML = document.getElementById("board");
@@ -348,3 +353,47 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('savePlayerScoreBtn').onclick = function() { savePlayerScore(); };
   document.getElementById('closePlayerNameBtn').onclick = function() { closePlayerNameModal(); };
 });
+
+// ---- FUNCIONES PARA EL MODAL DE JUGADOR ----
+function showPlayerNameModal() {
+  const score = calculateScore();
+  const finalTime = formatDuration(timeElapsed);
+  
+  document.getElementById('finalScore').textContent = score;
+  document.getElementById('finalTime').textContent = finalTime;
+  document.getElementById('playerNameInput').value = '';
+  document.getElementById('playerNameModal').style.display = 'block';
+  document.getElementById('playerNameInput').focus();
+}
+
+function closePlayerNameModal() {
+  document.getElementById('playerNameModal').style.display = 'none';
+}
+
+function savePlayerScore() {
+  const playerName = document.getElementById('playerNameInput').value.trim();
+  
+  if (playerName === '') {
+    alert('Por favor ingresa tu nombre.');
+    return;
+  }
+  
+  const score = calculateScore();
+  saveGame(playerName, score, timeElapsed);
+  closePlayerNameModal();
+  alert('¡Puntuación guardada exitosamente!');
+}
+
+function calculateScore() {
+  const baseScore = 1000;
+  const timePenalty = timeElapsed * 2;
+  const difficultyBonus = mines * 10;
+  
+  return Math.max(0, baseScore - timePenalty + difficultyBonus);
+}
+
+function formatDuration(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+}

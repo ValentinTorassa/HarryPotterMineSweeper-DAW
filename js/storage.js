@@ -5,11 +5,9 @@ var pendingScore = null;
 var pendingDuration = null;
 
 // Guarda los datos de una partida en el LocalStorage
-function saveGame(score, duration) {
-  var playerData = JSON.parse(localStorage.getItem("playerData")) || {};
+function saveGame(playerName, score, duration) {
   var game = {
-    playerName: playerData.name || "Player", // nombre guardado
-    house: playerData.house || "",            // casa guardada
+    playerName: playerName || "Player",
     score: score,
     duration: duration,
     date: getCurrentDate(),
@@ -77,14 +75,13 @@ function getCurrentDate() {
   return day + '/' + month + '/' + year;
 }
 
-// Devuelve la hora actual en formato hh:mm:ss
+// Devuelve la hora actual en formato hh:mm
 function getCurrentTime() {
   var now = new Date();
   var hours = now.getHours();
   var minutes = now.getMinutes();
-  var seconds = now.getSeconds();
 
-  return hours + ':' + minutes + ':' + seconds;
+  return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
 }
 //MANEJO DEL RANKING CON MODAL
 
