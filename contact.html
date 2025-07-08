@@ -1,47 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title>Contacto - Buscaminas Harry Potter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/contactStyles.css">
 </head>
 <body>
     <header class="header">
-        <h1 class="headerTitle">⭐Complete to join Harry Potter Minesweeper⭐</h1>
-        <a href="https://github.com/ValentinTorassa/MineSweeper-DAW"
-            target="_blank"
-            class="githubLink"
-            title="GitHub repository">
-            <i class="fab fa-github githubIcon"></i>
-        </a>
+        <h1 class="header-title">Buscaminas Harry Potter</h1>
+        <div class="header-actions">
+            <a href="index.html" class="header-link">Volver al Juego</a>
+            <a href="https://github.com/ValentinTorassa/MineSweeper-DAW" class="header-link" target="_blank">GitHub</a>
+            <div class="mode-toggle">
+                <button id="toggleModeBtn" class="mode-btn" aria-label="Cambiar modo" title="Cambiar modo claro/oscuro">🌙</button>
+                <button id="musicToggleBtn" class="mode-btn" aria-label="Música" title="Prender/Apagar música">🔊</button>
+            </div>
+        </div>
     </header>
     <main class="main">
         <form id="formContact" class="formContact">
-            <label for="nameContact">Name:</label>
-            <input type="text" id="nameContact" name="nameContact">
+            <label for="nameContact">🧙‍♂️ Nombre del Mago:</label>
+            <input type="text" id="nameContact" name="nameContact" placeholder="Ingresa tu nombre mágico">
             <span id="errorNameContact" class="error"></span>
         
-            <label for="emailContact">Email:</label>
-            <input type="email" id="emailContact" name="emailContact">
+            <label for="emailContact">📮 Lechuza Postal (Email):</label>
+            <input type="email" id="emailContact" name="emailContact" placeholder="tu.email@hogwarts.com">
             <span id="errorEmailContact" class="error"></span>
         
-            <label for="messageContact">Message:</label>
-            <textarea id="messageContact" name="messageContact"></textarea>
+            <label for="messageContact">📜 Mensaje Mágico:</label>
+            <textarea id="messageContact" name="messageContact" placeholder="Escribe tu mensaje aquí..."></textarea>
             <span id="errorMessageContact" class="error"></span>
         
-            <label for="houseContact">Select your house:</label>
+            <label for="houseContact">🏰 Selecciona tu Casa de Hogwarts:</label>
             <select id="houseContact" name="houseContact">
-                <option value="">Choose...</option>
-                <option value="Gryffindor">Gryffindor</option>
-                <option value="Slytherin">Slytherin</option>
-                <option value="Ravenclaw">Ravenclaw</option>
-                <option value="Hufflepuff">Hufflepuff</option>
+                <option value="">🎭 Elige tu casa...</option>
+                <option value="Gryffindor">🦁 Gryffindor</option>
+                <option value="Slytherin">🐍 Slytherin</option>
+                <option value="Ravenclaw">🦅 Ravenclaw</option>
+                <option value="Hufflepuff">🦡 Hufflepuff</option>
             </select>
             <span id="errorHouseContact" class="error"></span>
         
-            <button type="submit">Send</button>
+            <button type="submit">✨ Enviar Hechizo</button>
         </form>
         
     </main>
