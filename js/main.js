@@ -181,7 +181,8 @@ function refreshBoard() {
       const cell = document.getElementById(`cell-${c}-${r}`);
       if (cell) {
         if (board[c][r].state === "revealed") {
-          cell.style.backgroundColor = "#ddd";
+          cell.classList.add("revealed"); // agrego para que lo que se revelo se vea gris
+          cell.style.backgroundColor = "";
           if (board[c][r].value === -1) {
             cell.innerHTML = "💣";
             cell.style.color = "red";
