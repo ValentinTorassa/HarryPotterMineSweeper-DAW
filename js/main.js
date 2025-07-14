@@ -302,10 +302,6 @@ function showResultGif(win) {
 }
 
 // ---- MUSICA DE FONDO ----
-document.addEventListener("click", () => {
-  soundGame.loop = true;
-  soundGame.play();
-}, { once: true });
 
 function stopBackgroundMusic() {
   soundGame.pause();
