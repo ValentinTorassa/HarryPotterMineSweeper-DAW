@@ -1,6 +1,6 @@
 "use strict";
 // Variables globales para el ranking
-var currentSortOrder = 'score'; // 'score' o 'date'
+var currentSortOrder = 'score';
 var pendingScore = null;
 var pendingDuration = null;
 
@@ -35,13 +35,13 @@ function getSavedGames() {
   return games;
 }
 
-// Ordena las partidas por puntaje (descendente)
+// Ordena las partidas por puntaje 
 function getGamesSortedByScore() {
   var games = getSavedGames();
   return games.sort((a, b) => b.score - a.score);
 }
 
-// Ordena las partidas por fecha (más reciente primero)
+
 function getGamesSortedByDate() {
   var games = getSavedGames();
   return games.sort((a, b) => b.timestamp - a.timestamp);
@@ -185,7 +185,6 @@ function savePlayerScore() {
     }
 }
 
-// Escapa caracteres HTML para prevenir XSS
 function escapeHtml(text) {
     var map = {
         '&': '&amp;',
