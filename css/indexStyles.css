@@ -1,0 +1,496 @@
+.icon-bomb, .icon-flag {
+  width: 23px;
+  height: 23px;
+  display: block;
+  margin: 0 auto;
+  image-rendering: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Modal: ventana emergente, oculta por defecto */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.65); /* Fondo semitransparente */
+  justify-content: center;
+  align-items: center;
+}
+.modal.active,
+.modal[style*="display: block"] {
+  display: flex;
+}
+
+/* Header styles moved to header.css */
+
+/* Área principal del juego centrada */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem auto;
+  max-width: 600px;
+  padding: 0 1rem;
+}
+
+/* Contenedor de controles - diseño más sutil */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+/* Removed overly decorative elements */
+
+/* Panel de estado - diseño más sutil */
+.status-panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.3) 0%, 
+    rgba(0, 0, 0, 0.2) 100%);
+  color: var(--text-secondary);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Game actions container */
+.game-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  align-items: center;
+}
+
+/* Botones de dificultad - diseño más sutil */
+.difficulty {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.difficulty button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.control-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
+  position: relative;
+  overflow: hidden;
+  opacity: 0.8;
+}
+
+.difficulty button:hover, .control-buttons button:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.difficulty button:active, .control-buttons button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablero del juego estilo mesa de ajedrez mágico */
+.board {
+  margin-top: 2rem;
+  background: linear-gradient(135deg, 
+    var(--hogwarts-blue) 0%, 
+    var(--magic-purple) 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px var(--shadow-color),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              0 0 0 5px var(--gryffindor-gold);
+  border: 5px solid var(--gryffindor-gold);
+  position: relative;
+}
+
+.board::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    var(--gryffindor-gold) 0%, 
+    var(--hogwarts-gold) 25%, 
+    var(--gryffindor-gold) 50%, 
+    var(--hogwarts-gold) 75%, 
+    var(--gryffindor-gold) 100%);
+  border-radius: 25px;
+  z-index: -1;
+}
+
+/* Celda individual del tablero estilo piedra mágica */
+.cell {
+  user-select: none;
+  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, 
+    rgba(247, 243, 233, 0.9) 0%, 
+    rgba(240, 230, 200, 0.9) 100%);
+  border: 2px solid var(--gryffindor-gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  color: var(--ink-black);
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, 
+    rgba(255, 215, 0, 0.1) 0%, 
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cell:hover::before {
+  opacity: 1;
+}
+
+.cell:hover {
+  background: linear-gradient(135deg, 
+    var(--hogwarts-gold) 0%, 
+    var(--gryffindor-gold) 100%);
+  color: var(--parchment);
+  transform: scale(1.1) rotateZ(2deg);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+  border-color: var(--parchment);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.cell:active {
+  transform: scale(0.95) rotateZ(-1deg);
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+/* Contenido de la ventana modal */
+.modal-content {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 300px;
+  max-width: 95vw;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+.modal-content button {
+  margin: 1rem 0.25rem 0 0.25rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--button-hover);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px var(--shadow-color);
+}
+.modal-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+.modal-content h2, .modal-content h3 {
+  margin-top: 0;
+  color: var(--text-secondary);
+}
+
+/* Tabla de ranking de partidas */
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+.ranking-table th, .ranking-table td {
+  padding: 0.25rem 0.4rem;
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+.ranking-table tr.top-player {
+  background: rgb(255, 224, 102);
+  font-weight: bold;
+}
+
+/* Mensaje cuando no hay partidas */
+.no-games {
+  margin: 1rem 0;
+  color: rgb(136, 136, 136);
+}
+
+
+/* Mode toggle styles moved to header.css */
+
+/* Estilos para los nuevos modales y elementos del ranking */
+.ranking-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  opacity: 0.8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  opacity: 0.8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(220, 53, 69, 0.8) 100%);
+  color: white;
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  opacity: 0.8;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(200, 35, 51, 0.9) 0%, rgba(200, 35, 51, 0.8) 100%);
+  border-color: rgba(200, 35, 51, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.input-group {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+/* === Estilo para celdas reveladas=== */
+.cell.revealed {
+  background: rgb(204, 204, 204);
+}
+
+/* -------- Responsive: para pantallas chicas -------- */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  main {
+    max-width: 98vw;
+    margin: 1rem 0.5rem;
+  }
+  
+  .controls {
+    padding: 1rem;
+  }
+  
+  .difficulty {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .difficulty button, #resetBtn, #rankingBtn {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .status-panel {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .modal-content {
+    min-width: 90vw;
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .ranking-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .cell {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .controls {
+    padding: 0.75rem;
+  }
+  
+  .modal-content {
+    min-width: 95vw;
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  .cell {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+  }
+}

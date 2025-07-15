@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscaminas Harry Potter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/indexStyles.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header-title">Buscaminas Harry Potter</h1>
+        <div class="header-actions">
+            <a href="contact.html" class="header-link">Contacto</a>
+            <a href="https://github.com/ValentinTorassa/MineSweeper-DAW" class="header-link" target="_blank">GitHub</a>
+            <div class="mode-toggle">
+                <button id="toggleModeBtn" class="mode-btn" aria-label="Cambiar modo" title="Cambiar modo claro/oscuro">🌙</button>
+                <button id="musicToggleBtn" class="mode-btn" aria-label="Música" title="Prender/Apagar música">🔊</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="controls">
+            <div class="status-panel">
+                <span>⚡ Minas: <span id="mineCount">10</span></span>
+                <span>⏰ <span id="timer">0</span></span>
+            </div>
+            <div class="game-actions">
+                <div class="difficulty">
+                    <button id="easyBtn" type="button">Fácil</button>
+                    <button id="mediumBtn" type="button">Medio</button>
+                    <button id="hardBtn" type="button">Difícil</button>
+                </div>
+                <div class="control-buttons">
+                    <button id="resetBtn" type="button" title="Reiniciar">Nuevo Hechizo</button>
+                    <button id="rankingBtn" type="button" title="Ver Ranking">Ranking</button>
+                </div>
+            </div>
+        </div>
+        <div id="board" class="board"></div>
+    </main>
+
+    <!-- Modal mágico para mostrar gifs al ganar/perder -->
+  <div id="resultGifModal" class="modal">
+    <div class="modal-content" style="background: none; box-shadow:none;">
+      <img id="resultGifImage" src="" alt="Resultado" style="max-width:320px; width:100%; border-radius:12px;"/>
+      <p id="resultGifText" style="font-size:1.3em; color:#fff; text-shadow:0 0 7px #000;"></p>
+      <button id="closeGifModalBtn" style="margin-top:1em;">🚪 Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal para el Salón de la Fama -->
+  <div id="rankingModal" class="modal">
+    <div class="modal-content">
+      <h2>🏆 Salón de la Fama de Magos</h2>
+      <div class="ranking-controls">
+        <button id="sortByScoreBtn" class="btn-secondary">📊 Ordenar por Puntaje</button>
+        <button id="sortByDateBtn" class="btn-secondary">📅 Ordenar por Fecha</button>
+        <button id="clearRankingBtn" class="btn-danger">🗑️ Limpiar Registro</button>
+      </div>
+      <div id="rankingTable"></div>
+      <button id="closeRankingBtn" class="btn-primary">🚪 Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Modal para ingresar nombre del mago ganador -->
+  <div id="playerNameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎉 ¡Felicidades, Mago! Has completado el hechizo</h2>
+      <p>⭐ Tu puntuación mágica: <span id="finalScore">0</span></p>
+      <p>⏰ Tiempo de conjuro: <span id="finalTime">0:00</span></p>
+      <div class="input-group">
+        <label for="playerNameInput">📝 Ingresa tu nombre mágico para el Salón de la Fama:</label>
+        <input type="text" id="playerNameInput" placeholder="Tu nombre de mago" maxlength="20">
+      </div>
+      <div class="button-group">
+        <button id="savePlayerScoreBtn" class="btn-primary">✨ Guardar en el Salón</button>
+        <button id="closePlayerNameBtn" class="btn-secondary">🚪 Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/storage.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/header.js"></script>
+
+</body>
+</html>
