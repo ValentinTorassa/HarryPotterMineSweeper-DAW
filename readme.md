@@ -26,5 +26,5 @@ A Harry Potter-themed **Minesweeper game** with immersive visual and sound effec
 - **JavaScript** — Game logic, UI interaction
 - **LocalStorage** — Stores settings and player scores persistently
 
-## Project Structure
+
 
