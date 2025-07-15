@@ -11,6 +11,14 @@ var soundReveal = new Audio("assets/sounds/revealSound.wav");
 var soundFlag = new Audio("assets/sounds/flagSound.wav");
 var soundGame = new Audio("assets/sounds/harryPotterSound.mp3");
 
+// ---- FUNCIÓN PARA REPRODUCIR SONIDOS SOLO SI LA MÚSICA ESTÁ HABILITADA ----
+function playSoundIfEnabled(sound) {
+  const musicEnabled = localStorage.getItem('musicEnabled');
+  if (musicEnabled === null || musicEnabled === "1") {
+    sound.play();
+  }
+}
+
 // ---- TIMER ----
 var timerInterval = null;
 var timeElapsed = 0;
@@ -132,7 +140,7 @@ function handleRightClick(col, row) {
   if (board[col][row].state === "flagged") {
     board[col][row].state = "hidden";
     flags--;
-    soundFlag.play();
+    playSoundIfEnabled(soundFlag);
   } else {
     // Contar banderas actuales
     var totalFlags = 0;
@@ -145,7 +153,7 @@ function handleRightClick(col, row) {
     if (totalFlags < mines) {
       board[col][row].state = "flagged";
       flags++;
-      soundFlag.play();
+      playSoundIfEnabled(soundFlag);
     }
   }
   updateFlagCounter();
@@ -158,7 +166,7 @@ function revealCell(col, row) {
   if (board[col][row].state === "revealed" || board[col][row].state === "flagged") return;
   board[col][row].state = "revealed";
   board[col][row].revealed = true;
-  soundReveal.play();
+  playSoundIfEnabled(soundReveal);
   if (board[col][row].value === 0) { revealAdjacentCells(col, row); }
   refreshBoard();
 }
@@ -244,7 +252,7 @@ function winGame() {
   const boardHTML = document.getElementById("board");
   if (boardHTML) boardHTML.style.background = "green";
   isPlaying = false;
-  soundWin.play();
+  playSoundIfEnabled(soundWin);
   stopTimer();
   showResultGif(true);
   
@@ -257,7 +265,7 @@ function loseGame() {
   const boardHTML = document.getElementById("board");
   if (boardHTML) boardHTML.style.background = "red";
   isPlaying = false;
-  soundGameover.play();
+  playSoundIfEnabled(soundGameover);
   stopTimer();
   showAllMines();
   showResultGif(false);
