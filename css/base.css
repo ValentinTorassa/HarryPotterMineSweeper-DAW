@@ -76,7 +76,6 @@ html.light-mode::before {
 
 body {
   color: var(--text-primary);
-  font-family: 'Cinzel', 'Times New Roman', serif;
   font-weight: 500;
   margin: 0;
   padding: 0;
