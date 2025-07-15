@@ -1,11 +1,11 @@
-/* agrego caracteristicas para Modo oscuro (por defecto) */
+/* Solo variables propias del formulario */
 :root {
   --form-bg: linear-gradient(135deg, rgba(31, 41, 55, 0.95) 0%, rgba(76, 29, 149, 0.95) 100%);
   --input-bg: rgba(0, 0, 0, 0.3);
   --input-border: rgba(255, 255, 255, 0.2);
   --error-color: rgb(255, 107, 107);
 }
-/* agrego caracteristicas para Modo claro */
+
 html.light-mode {
   --form-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 243, 233, 0.95) 100%);
   --input-bg: rgba(255, 255, 255, 0.8);

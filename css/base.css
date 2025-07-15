@@ -1,84 +1,85 @@
-/* Variables CSS para colores temáticos de Harry Potter */
-:root {
-    --gryffindor-red: rgb(117, 0, 2);
-    --gryffindor-gold: rgb(211, 166, 37);
-    --slytherin-green: rgb(26, 71, 42);
-    --slytherin-silver: rgb(93, 93, 93);
-    --ravenclaw-blue: rgb(14, 26, 64);
-    --ravenclaw-bronze: rgb(148, 107, 45);
-    --hufflepuff-yellow: rgb(255, 219, 0);
-    --hufflepuff-black: rgb(0, 0, 0);
-    --hogwarts-blue: rgb(31, 41, 55);
-    --hogwarts-gold: rgb(245, 158, 11);
-    --magic-purple: rgb(76, 29, 149);
-    --parchment: rgb(247, 243, 233);
-    --ink-black: rgb(31, 31, 31);
-    --shadow-magic: rgba(79, 70, 229, 0.4);
-    --shadow-dark: rgba(0, 0, 0, 0.6);
-}
-/* Modo oscuro (por defecto) */
-:root {
-    --bg-primary: var(--hogwarts-blue);
-    --bg-secondary: var(--magic-purple);
-    --text-primary: var(--parchment);
-    --text-secondary: var(--hogwarts-gold);
-    --border-color: var(--gryffindor-gold);
-    --shadow-color: var(--shadow-magic);
-    --button-bg: var(--gryffindor-red);
-    --button-hover: var(--hogwarts-gold);
-    --button-text: var(--parchment);
-}
-/* Modo claro */
-html.light-mode {
-    --bg-primary: var(--parchment);
-    --bg-secondary: rgb(255, 255, 255);
-    --text-primary: var(--ink-black);
-    --text-secondary: var(--gryffindor-red);
-    --border-color: var(--gryffindor-gold);
-    --shadow-color: var(--shadow-dark);
-    --button-bg: var(--gryffindor-red);
-    --button-hover: var(--hogwarts-gold);
-    --button-text: var(--parchment);
-}  
-/* Fondo principal del sitio con imágenes temáticas */
-html { 
-    min-height: 100vh;
-    background: url('../img/HarryPotterWallpaper.png') center center / cover no-repeat,
-                linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    transition: all 0.3s ease;
-    position: relative;
-}
-  
-html.light-mode {
-    background: url('../img/HarryPotterWallpaper_light.png') center center / cover no-repeat,
-                linear-gradient(135deg, var(--parchment) 0%, rgb(240, 244, 248) 100%);
-}
-/* Overlay mágico */
-html::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(116, 0, 1, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
-}
-html.light-mode::before {
-    background: radial-gradient(circle at 30% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 219, 0, 0.1) 0%, transparent 50%);
-}
-/* Estilos generales del cuerpo de la página */
-body {
-    color: var(--text-primary);
-    font-family: 'Cinzel', 'Times New Roman', serif;
-    font-weight: 500;
-    margin: 0;
-    padding: 0;
-    transition: color 0.3s ease;
-    text-shadow: 1px 1px 2px var(--shadow-color);
-}
-/* Importar fuente mágica */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Uncial+Antiqua&display=swap');
+
+:root {
+  --primary-red: rgb(117, 0, 2);
+  --accent-gold: rgb(211, 166, 37);
+  --dark-green: rgb(26, 71, 42);
+  --medium-gray: rgb(93, 93, 93);
+  --deep-blue: rgb(14, 26, 64);
+  --bronze: rgb(148, 107, 45);
+  --bright-yellow: rgb(255, 219, 0);
+  --pure-black: rgb(0, 0, 0);
+
+  --primary-bg: rgb(31, 41, 55);
+  --secondary-bg: rgb(76, 29, 149);
+  --light-bg: rgb(247, 243, 233);
+  --dark-text: rgb(31, 31, 31);
+
+  --shadow-soft: rgba(79, 70, 229, 0.4);
+  --shadow-strong: rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --bg-primary: var(--primary-bg);
+  --bg-secondary: var(--secondary-bg);
+  --text-primary: var(--light-bg);
+  --text-secondary: var(--accent-gold);
+  --border-color: var(--accent-gold);
+  --shadow-color: var(--shadow-soft);
+  --button-bg: var(--primary-red);
+  --button-hover: var(--accent-gold);
+  --button-text: var(--light-bg);
+}
+
+html.light-mode {
+  --bg-primary: var(--light-bg);
+  --bg-secondary: rgb(255, 255, 255);
+  --text-primary: var(--dark-text);
+  --text-secondary: var(--primary-red);
+  --border-color: var(--accent-gold);
+  --shadow-color: var(--shadow-strong);
+  --button-bg: var(--primary-red);
+  --button-hover: var(--accent-gold);
+  --button-text: var(--light-bg);
+}
+
+html {
+  min-height: 100vh;
+  background: url('../img/HarryPotterWallpaper.png') center center / cover no-repeat,
+              linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+html.light-mode {
+  background: url('../img/HarryPotterWallpaper_light.png') center center / cover no-repeat,
+              linear-gradient(135deg, var(--light-bg) 0%, rgb(240, 244, 248) 100%);
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(116, 0, 1, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+html.light-mode::before {
+  background: radial-gradient(circle at 30% 20%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255, 219, 0, 0.1) 0%, transparent 50%);
+}
+
+body {
+  color: var(--text-primary);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  transition: color 0.3s ease;
+  text-shadow: 1px 1px 2px var(--shadow-color);
+}
