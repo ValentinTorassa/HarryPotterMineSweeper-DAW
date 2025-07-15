@@ -25,6 +25,7 @@ var timeElapsed = 0;
 
 // ---- FUNCIONES PRINCIPALES ----
 function setDifficulty(level) {
+  if (gameStarted) return;
   if (level === 'easy')      { rows = 8;  columns = 8;  mines = 10; }
   else if (level === 'medium'){ rows = 12; columns = 12; mines = 25; }
   else if (level === 'hard') { rows = 16; columns = 16; mines = 40; }
@@ -35,7 +36,9 @@ function resetVariables() {
   flags = 0;
   isPlaying = true;
   gameStarted = false;
+  updateDifficultyButtons();
 }
+
 
 function generateBoardHTML() {
   const boardContainer = document.getElementById('board');
@@ -128,7 +131,7 @@ function addEvents() {
 
 function handleCellClick(col, row) {
   if (!isPlaying || board[col][row].state === "flagged") return;
-  if (!gameStarted) { gameStarted = true; startTimer(); }
+  if (!gameStarted) { gameStarted = true; startTimer(); updateDifficultyButtons(); }
   if (board[col][row].value === -1) { loseGame(); stopTimer(); return; }
   revealCell(col, row);
   if (checkWin()) { winGame(); stopTimer(); }
@@ -401,4 +404,29 @@ function formatDuration(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
   return minutes.toString().padStart(2, '0') + ':' + remainingSeconds.toString().padStart(2, '0');
+}
+
+
+function updateDifficultyButtons() {
+  const easyBtn = document.getElementById('easyBtn');
+  const mediumBtn = document.getElementById('mediumBtn');
+  const hardBtn = document.getElementById('hardBtn');
+  
+  if (easyBtn && mediumBtn && hardBtn) {
+    if (gameStarted) {
+      easyBtn.disabled = true;
+      mediumBtn.disabled = true;
+      hardBtn.disabled = true;
+      easyBtn.style.opacity = '0.5';
+      mediumBtn.style.opacity = '0.5';
+      hardBtn.style.opacity = '0.5';
+    } else {
+      easyBtn.disabled = false;
+      mediumBtn.disabled = false;
+      hardBtn.disabled = false;
+      easyBtn.style.opacity = '1';
+      mediumBtn.style.opacity = '1';
+      hardBtn.style.opacity = '1';
+    }
+  }
 }
