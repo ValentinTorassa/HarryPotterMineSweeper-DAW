@@ -45,14 +45,14 @@ html.light-mode {
 
 html {
   min-height: 100vh;
-  background: url('../img/HarryPotterWallpaper.png') center center / cover no-repeat,
+  background: url('../assets/img/HarryPotterWallpaper.png') center center / cover no-repeat,
               linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   transition: all 0.3s ease;
   position: relative;
 }
 
 html.light-mode {
-  background: url('../img/HarryPotterWallpaper_light.png') center center / cover no-repeat,
+  background: url('../assets/img/HarryPotterWallpaper_light.png') center center / cover no-repeat,
               linear-gradient(135deg, var(--light-bg) 0%, rgb(240, 244, 248) 100%);
 }
 

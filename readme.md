@@ -26,5 +26,9 @@ A Harry Potter-themed **Minesweeper game** with immersive visual and sound effec
 - **JavaScript** — Game logic, UI interaction
 - **LocalStorage** — Stores settings and player scores persistently
 
+## Academic Project
+
+This project was developed as the final assignment for the course Web Architectures at Universidad Abierta Interamericana (UAI). It was created by students Valentín Torassa Colombero, Agustina De Yulis, and Valentina Bianchi under the guidance of professor Darío Marañez. The project was required to be built using core web technologies: HTML, CSS, and JavaScript.
+
 
 

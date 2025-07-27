@@ -43,30 +43,24 @@ function resetVariables() {
 function generateBoardHTML() {
   const boardContainer = document.getElementById('board');
   if (!boardContainer) return;
+
   boardContainer.innerHTML = '';
   boardContainer.style.display = 'grid';
-  boardContainer.style.gridTemplateColumns = `repeat(${columns}, 30px)`;
+  boardContainer.style.gridTemplateColumns = `repeat(${columns}, 35px)`; // Acorde a CSS
   boardContainer.style.gap = '1px';
   boardContainer.style.backgroundColor = '#ccc';
   boardContainer.style.padding = '10px';
+
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < columns; c++) {
       const cell = document.createElement('div');
       cell.id = `cell-${c}-${r}`;
-      cell.className = 'cell';
-      cell.style.width = '30px';
-      cell.style.height = '30px';
-      cell.style.backgroundColor = '#eee';
-      cell.style.border = '1px solid #999';
-      cell.style.display = 'flex';
-      cell.style.alignItems = 'center';
-      cell.style.justifyContent = 'center';
-      cell.style.cursor = 'pointer';
-      cell.style.fontWeight = 'bold';
+      cell.className = 'cell'; // Usamos la clase del CSS
       boardContainer.appendChild(cell);
     }
   }
 }
+
 
 function generateGameBoard() {
   board = [];
@@ -204,7 +198,7 @@ function refreshBoard() {
             cell.innerHTML = "";
           }
         } else if (board[c][r].state === "flagged") {
-          cell.innerHTML = '<img src="img/goldenSnitch2.png" alt="Snitch Dorada" class="icon-flag">';
+          cell.innerHTML = '<img src="assets/img/goldenSnitch2.png" alt="Snitch Dorada" class="icon-flag">';
           cell.style.backgroundColor = "#eee";
         } else {
           cell.innerHTML = "";
@@ -279,7 +273,7 @@ function showAllMines() {
       if (board[c][r].value === -1) {
         const cell = document.getElementById(`cell-${c}-${r}`);
         if (cell) {
-          cell.innerHTML = '<img src="img/deathlyHallows.png" alt="Bomba" class="icon-bomb">';
+          cell.innerHTML = '<img src="assets/img/deathlyHallows.png" alt="Bomba" class="icon-bomb">';
           cell.style.color = "black";
         }
       }
@@ -304,10 +298,10 @@ function showResultGif(win) {
   var img = document.getElementById('resultGifImage');
   var text = document.getElementById('resultGifText');
   if (win) {
-    img.src = 'img/snapeApproves.gif';
+    img.src = 'assets/img/snapeApproves.gif';
     text.textContent = '¡Felicidades, ganaste!';
   } else {
-    img.src = 'img/avadaKadavra.gif';
+    img.src = 'assets/img/avadaKadavra.gif';
     text.textContent = '¡Game Over!';
   }
   modal.classList.add('active');
