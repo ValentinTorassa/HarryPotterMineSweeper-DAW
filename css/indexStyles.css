@@ -181,7 +181,7 @@ main {
   z-index: -1;
 }
 
-/* Celda individual del tablero estilo piedra mágica */
+
 .cell {
   user-select: none;
   font-size: 1.2rem;
@@ -284,7 +284,6 @@ main {
   border-bottom: 1px solid rgb(204, 204, 204);
 }
 .ranking-table tr.top-player {
-  background: rgb(255, 224, 102);
   font-weight: bold;
 }
 
@@ -494,3 +493,67 @@ main {
     font-size: 0.9rem;
   }
 }
+
+
+/* Contraste para botones en modo claro */
+.light-mode button {
+  background-color: #333;       
+  color: #fff;               
+  border: 2px solid #222;
+  transition: all 0.3s ease;
+}
+
+.light-mode button:hover {
+  background-color: #555;
+  color: #ffcc00;              
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.light-mode .status-panel span {
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+.light-mode .status-panel span {
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+
+/* Estilos para el modal en modo claro */
+html.light-mode .modal-content {
+  background-color: #fff;
+  color: #222;
+  border: 2px solid #888;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+html.light-mode .modal-content h2,
+html.light-mode .modal-content p,
+html.light-mode .modal-content label {
+  color: #222;
+}
+
+html.light-mode .modal-content input {
+  background-color: #f9f9f9;
+  color: #222;
+  border: 1px solid #aaa;
+}
+
+html.light-mode .modal-content .btn-primary,
+html.light-mode .modal-content .btn-secondary {
+  background-color: #444;
+  color: #fff;
+  border: none;
+}
+
+html.light-mode .modal-content .btn-primary:hover,
+html.light-mode .modal-content .btn-secondary:hover {
+  background-color: #222;
+}
+
+
+
